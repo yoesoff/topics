@@ -257,12 +257,12 @@
 
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://drive.google.com/open?id=1Y4xtZcTgD97vbBDWVqnYjPduUS0MZCOk">CV</a>
+                    <a href="https://twitter.com/yoesoff">Twitter</a>
+                    <a href="https://www.linkedin.com/in/mhyusuf/">Linkedin</a>
+                    <a href="https://undebugable.blogspot.com/">Blog</a>
+                    <a href="https://undebugable.wordpress.com">Blog</a>
+                    <a href="https://github.com/yoesoff/topics">GitHub</a>
                 </div>
             </div>
         </div>
