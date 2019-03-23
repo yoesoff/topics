@@ -21,3 +21,4 @@ Route::apiResource('topics', 'TopicController');
 Route::apiResource('votes', 'VoteController');
 
 Route::post('/topics/{id}/votes', 'TopicController@vote');
+Route::get('/topics/{id}/votes', 'TopicController@getVote');

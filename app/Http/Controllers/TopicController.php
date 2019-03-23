@@ -7,6 +7,7 @@ use App\Topic;
 use App\Vote;
 use App\Http\Resources\Topic as TopicResource;
 use App\Http\Resources\TopicCollection;
+use App\Http\Resources\VoteCollection;
 use App\Http\Resources\Vote as VoteResource;
 
 class TopicController extends Controller
@@ -18,7 +19,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        return new TopicCollection(Topic::all());
+        return new TopicCollection(Topic::orderBy('id', 'desc')->get());
     }
 
     public function create(Request $request)
@@ -95,5 +96,22 @@ class TopicController extends Controller
 
         $vote = Vote::create($data);
         return new VoteResource($vote);
+    }
+
+    public function getVote(Request $request, $id)
+    {
+        $topic = Topic::findOrFail($id);
+
+        $votes = collect([]);
+
+        $status = $request->get('status');
+
+        if ($status == 'all') {
+            $votes = Vote::where('topic_id', $id)->get();
+        } else {
+            $votes = Vote::where('topic_id', $id)->where('status', $status)->get();
+        }
+
+        return new VoteCollection($votes);
     }
 }
