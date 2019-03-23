@@ -1,0 +1,19 @@
+version: '2'
+services:
+    topics_php_fpm:
+        build: php-fpm
+        ports:
+            - '9002:9000'
+        volumes:
+            - ../:/var/www/topics:cached
+            - ./logs/topics:/var/www/topics/var/logs:cached
+    topics_nginx:
+        build: nginx
+        ports:
+            - '8080:80'
+        links:
+            - topics_php_fpm
+        volumes_from:
+            - topics_php_fpm
+        volumes:
+            - ./logs/nginx/:/var/log/nginx:cached
