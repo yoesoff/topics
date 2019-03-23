@@ -1,0 +1,106 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Moovaz/topics",
+		"_postman_id": "3ce9452b-93af-71d2-a4a4-7ce45f378417",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "list of topics",
+			"request": {
+				"url": "http://localhost:8080/api/topics",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "http://localhost:8080/api/topics"
+			},
+			"response": []
+		},
+		{
+			"name": "add new topic",
+			"request": {
+				"url": "http://localhost:8080/api/topics",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\" : \"wiw wew\",\n\t\"content\" : \"siai asdasd asd\"\n\t\n}"
+				},
+				"description": "http://localhost:8080/api/topics"
+			},
+			"response": []
+		},
+		{
+			"name": "votes up",
+			"request": {
+				"url": "http://localhost:8080/api/topics/2/votes",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"status\": \"down\", \n\"username\": \"kacang\"\n}"
+				},
+				"description": "http://localhost:8080/api/topics/2/votes"
+			},
+			"response": []
+		},
+		{
+			"name": "get votes by topic and by status",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/api/topics/2/votes?status=up",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"topics",
+						"2",
+						"votes"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "up",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "http://localhost:8080/api/topics/2/votes?status=up"
+			},
+			"response": []
+		},
+		{
+			"name": "my_votes",
+			"request": {
+				"url": "http://localhost:8080/api/votes/my_votes/User_5CBPc",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "my_votes"
+			},
+			"response": []
+		}
+	]
+}
