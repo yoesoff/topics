@@ -362,12 +362,12 @@
 
                         if(data.status== 'up') {
                             // alert("a.upfortopic"+data.id);
-                            $("a.upfortopic"+data.topic_id).css('color', 'Blue');
+                            $("a.upfortopic"+data.topic_id).css('color', 'green');
                             $("a.upfortopic"+data.topic_id).html("👍 " + $("a.upfortopic"+data.topic_id).html())
                         } 
 
                         if(data.status== 'down') {
-                            $("a.downfortopic"+data.topic_id).css('color', 'Blue');
+                            $("a.downfortopic"+data.topic_id).css('color', 'green');
                             $("a.downfortopic"+data.topic_id).html($("a.downfortopic"+data.topic_id).html() + " 👎");
                         }
                     }

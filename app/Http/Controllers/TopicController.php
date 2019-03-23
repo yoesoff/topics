@@ -91,9 +91,9 @@ class TopicController extends Controller
         $data = $request->all();
         
         if ($data['status'] == 'down') {
-            Vote::where('status', 'up')->where('topic_id', $id)->delete();
+            Vote::where('status', 'up')->where('topic_id', $id)->where('username', $data['username'])->delete();
         } else {
-            Vote::where('status', 'down')->where('topic_id', $id)->delete();
+            Vote::where('status', 'down')->where('topic_id', $id)->where('username', $data['username'])->delete();
         }
 
         $data['topic_id'] = $id;
