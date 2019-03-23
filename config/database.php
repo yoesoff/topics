@@ -8,7 +8,7 @@ return [
 
         'inmemory' => [
             'driver' => 'sqlite',
-            'database' => 'database/database.sqlite',
+            'database' => dirname(__DIR__).'/database/database.sqlite',
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
