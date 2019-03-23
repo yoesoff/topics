@@ -90,6 +90,12 @@ class TopicController extends Controller
 
         $data = $request->all();
         
+        if ($data['status'] == 'down') {
+            Vote::where('status', 'up')->where('topic_id', $id)->delete();
+        } else {
+            Vote::where('status', 'down')->where('topic_id', $id)->delete();
+        }
+
         $data['topic_id'] = $id;
         $data['created_at'] = date("Y-m-d");
         $data['updated_at'] = date("Y-m-d");
