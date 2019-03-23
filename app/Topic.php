@@ -16,4 +16,12 @@ class Topic extends Model
         'deleted_at',
         'updated_at',
     ];
+
+    /**
+     * Get the vote for the topic.
+     */
+    public function votes()
+    {
+        return $this->hasMany('App\Vote');
+    }
 }

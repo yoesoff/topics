@@ -17,10 +17,7 @@ class Vote extends JsonResource
         return [
             'status' => $this->status, 
             'username' => $this->username, 
-            'topic_id' => $this->topic_id,
-            'created_at' => $this->created_at,
-            'deleted_at' => $this->deleted_at,
-            'updated_at' => $this->updated_at,
+            'topic_id' => $this->topic_id
         ];
     }
 }
