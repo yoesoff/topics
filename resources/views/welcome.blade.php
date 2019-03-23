@@ -294,8 +294,6 @@
         localStorage.setItem("username", theusername);
     }
 
-    
-
     //start alert
     close = document.getElementById("close");
     note = document.getElementById("note");
@@ -306,49 +304,48 @@
     // end alert
 
     function add_item(data, index) {
-        console.log(data, index);
+        // console.log(data, index);
         $("div#viewer").append("<div style=\"width: 100%;padding:10px;text-align:left\">");
         $("div#viewer").append(data.content);
         $("div#viewer").append("<br/><font size=\"1.8\">Created at: "+data.created_at.substring(0, 10)+"</font>");
-        $("div#viewer").append("<div style=\"width: 100%;text-align:right\"> <a class=\"voteup\" href=\"#\" data-id=\""+data.id+"\">vote up</a> | <a class=\"votedown\" href=\"#\" data-id=\""+data.id+"\">vote down</a> </div>");
+        $("div#viewer").append("<div style=\"width: 100%;text-align:right\"> <a class=\"voteup upfortopic"+data.id+" \" href=\"#\" data-id=\""+data.id+"\">vote up</a> | <a class=\"votedown downfortopic"+data.id+"\" href=\"#\" data-id=\""+data.id+"\" >vote down</a> </div>");
         $("div#viewer").append("</div>");
-
-        // actions
-
-        $('a.votedown').unbind('click').click(function(){ // down
-            axios({
-              method: 'post',
-              url: '/api/topics/'+$(this).data('id')+'/votes',
-              data: {
-                username: theusername,
-                status: 'down'
-              }
-            }).then(function () {
-                
-            });
-        });
-
-        $('a.voteup').unbind('click').click(function(){ // up
-            axios({
-              method: 'post',
-              url: '/api/topics/'+$(this).data('id')+'/votes',
-              data: {
-                username: theusername,
-                status: 'up'
-              }
-            }).then(function () {
-                
-            });
-        });
-
     }
 
     function load_topics() {
+        $("div#loading").show();
         axios.get('/api/topics')
         .then(function (response) {
             $("div#viewer").html('');
             response.data.data.forEach(function(data, index){
                 add_item(data, index);
+            });
+
+            // actions
+            $('a.votedown').unbind('click').click(function(){ // down
+                axios({
+                  method: 'post',
+                  url: '/api/topics/'+$(this).data('id')+'/votes',
+                  data: {
+                    username: theusername,
+                    status: 'down'
+                  }
+                }).then(function () {
+                    load_topics();
+                });
+            });
+
+            $('a.voteup').unbind('click').click(function(){ // up
+                axios({
+                  method: 'post',
+                  url: '/api/topics/'+$(this).data('id')+'/votes',
+                  data: {
+                    username: theusername,
+                    status: 'up'
+                  }
+                }).then(function () {
+                    load_topics();
+                });
             });
             
         })
@@ -356,7 +353,34 @@
             console.log(error);
         })
         .then(function () {
-            $("div#loading").hide();
+
+            //load votes
+            axios.get('/api/votes/my_votes/'+theusername)
+            .then(function (response) {
+                response.data.data.forEach(function(data, index){
+                    if (theusername == data.username ) {
+
+                        if(data.status== 'up') {
+                            // alert("a.upfortopic"+data.id);
+                            $("a.upfortopic"+data.topic_id).css('color', 'Blue');
+                            $("a.upfortopic"+data.topic_id).html("👍 " + $("a.upfortopic"+data.topic_id).html())
+                        } 
+
+                        if(data.status== 'down') {
+                            $("a.downfortopic"+data.topic_id).css('color', 'Blue');
+                            $("a.downfortopic"+data.topic_id).html($("a.downfortopic"+data.topic_id).html() + " 👎");
+                        }
+                    }
+                });
+                
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            .then(function () {
+                $("div#loading").hide();
+                //load vote
+            });
         });
 
     }
