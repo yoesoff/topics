@@ -315,12 +315,30 @@
 
         // actions
 
-        $('a.votedown').unbind('click').click(function(){
-            alert('down');
+        $('a.votedown').unbind('click').click(function(){ // down
+            axios({
+              method: 'post',
+              url: '/api/topics/'+$(this).data('id')+'/votes',
+              data: {
+                username: theusername,
+                status: 'down'
+              }
+            }).then(function () {
+                
+            });
         });
 
-        $('a.voteup').unbind('click').click(function(){
-            alert('up');
+        $('a.voteup').unbind('click').click(function(){ // up
+            axios({
+              method: 'post',
+              url: '/api/topics/'+$(this).data('id')+'/votes',
+              data: {
+                username: theusername,
+                status: 'up'
+              }
+            }).then(function () {
+                
+            });
         });
 
     }
@@ -356,7 +374,7 @@
             $("div#loading").hide();
             load_topics();
             $("textarea#input-topic").val('');
-        });;
+        });
     }
 
     $( document ).ready(function() {

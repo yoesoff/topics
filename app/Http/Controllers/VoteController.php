@@ -85,4 +85,11 @@ class VoteController extends Controller
     {
         //
     }
+
+    public function my_votes($username)
+    {
+        $votes = Vote::where('username', $username)->get();
+
+        return new VoteCollection($votes);
+    }
 }

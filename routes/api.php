@@ -20,5 +20,7 @@ use Illuminate\Http\Request;
 Route::apiResource('topics', 'TopicController');
 Route::apiResource('votes', 'VoteController');
 
+Route::get('/votes/my_votes/{username}', 'VoteController@my_votes');
+
 Route::post('/topics/{id}/votes', 'TopicController@vote');
 Route::get('/topics/{id}/votes', 'TopicController@getVote');

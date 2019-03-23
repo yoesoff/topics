@@ -14,6 +14,6 @@ class Vote extends Model
     protected $dates = [
         'created_at',
         'deleted_at',
-        'updated_at',
+        'updated_at'
     ];
 }
